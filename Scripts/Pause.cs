@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
-    private bool isPaused;
+    public bool isPaused;
 
     [SerializeField] private Canvas PauseBody;
 

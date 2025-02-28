@@ -4,21 +4,31 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] public float walkSpeed = 5f;
     [SerializeField] private float SprintMultiplier = 2.0f;
 
     private InputHandler inputHandler;
 
     [SerializeField] private Transform orientation;
+    [SerializeField] private GameObject gun;
+
+    [SerializeField] private Transform greenPrefab;
+    [SerializeField] private Transform purplePrefab;
 
     private Rigidbody rb;
 
-    private Vector3 movementDirection;
+    private Transform greenShot;
+    private Transform purpleShot;
+
+    public Vector3 movementDirection;
     [SerializeField] private float jumpHeight = 10;
 
     private Pause pauseManager;
 
     private bool touchingGround = false;
+
+    public float portalTimer = 2f;
+    public float timer;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,13 +48,28 @@ public class CharacterController : MonoBehaviour
     {
         movementDirection = orientation.forward * inputHandler.MoveInput.y + orientation.right * inputHandler.MoveInput.x;
 
+        timer -= Time.deltaTime;
+
+
         if (inputHandler.PauseInput)
         {
             inputHandler.PauseInput = false;
             pauseManager.TogglePause();
         }
-    }
 
+        if (inputHandler.FireInput && greenShot == null)
+        {
+            GreenShot();
+            inputHandler.FireInput = false;
+        }
+        if (inputHandler.altFireInput && purpleShot == null)
+        {
+            PurpleShot();
+            inputHandler.altFireInput = false;
+        }
+
+    }
+    
     private void FixedUpdate()
     {
         HandleMovement();
@@ -56,6 +81,16 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    private void GreenShot()
+    {
+        greenShot = Instantiate(greenPrefab, gun.transform.position, gun.transform.rotation);
+    }
+
+    private void PurpleShot()
+    {
+        purpleShot = Instantiate(purplePrefab, gun.transform.position, gun.transform.rotation);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         touchingGround = true;
@@ -63,7 +98,7 @@ public class CharacterController : MonoBehaviour
 
     void Jump()
     {
-        rb.velocity += new Vector3(rb.position.x, rb.position.y+jumpHeight, rb.position.z);
+        rb.velocity += transform.up * jumpHeight;
     }
 
     void HandleMovement()
