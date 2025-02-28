@@ -38,6 +38,16 @@ public class PurpleShot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Portal")
+        {
+            Destroy(gameObject);
+            return;
+        }
+        if (collision.gameObject.tag != "Painting")
+        {
+            Destroy(gameObject);
+            return;
+        }
         PlacePortal(collision);
         Destroy(gameObject);
     }

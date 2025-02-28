@@ -31,7 +31,7 @@ public class GreenPortal : MonoBehaviour
         characterController = other.gameObject.GetComponentInParent<CharController>();
         if (characterController.timer > 0) return;
         other.gameObject.SetActive(false);
-        other.transform.position = purplePortal.transform.position;
+        other.transform.position = purplePortal.transform.position + purplePortal.transform.forward;
         other.gameObject.SetActive(true);
         characterController.timer = characterController.portalTimer;
     }

@@ -43,6 +43,11 @@ public class GreenShot : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        if (collision.gameObject.tag != "Painting")
+        {
+            Destroy(gameObject);
+            return;
+        }
         PlacePortal(collision);
         Destroy(gameObject);
     }
