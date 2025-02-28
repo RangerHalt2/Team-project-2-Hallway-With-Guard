@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharController : MonoBehaviour
 {
     [SerializeField] public float walkSpeed = 5f;
     [SerializeField] private float SprintMultiplier = 2.0f;

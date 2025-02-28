@@ -8,7 +8,7 @@ public class GreenPortal : MonoBehaviour
 
     public float startTime;
 
-    private CharacterController characterController;
+    private CharController characterController;
 
 
     //This will link the green to the purple portal by finding the game object.
@@ -28,7 +28,7 @@ public class GreenPortal : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
         if(!purplePortal) return;
 
-        characterController = other.gameObject.GetComponentInParent<CharacterController>();
+        characterController = other.gameObject.GetComponentInParent<CharController>();
         if (characterController.timer > 0) return;
         other.gameObject.SetActive(false);
         other.transform.position = purplePortal.transform.position;
