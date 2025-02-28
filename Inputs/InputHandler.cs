@@ -30,8 +30,8 @@ public class InputHandler : MonoBehaviour
     public float SprintValue { get; private set; }
     public bool PauseInput {  get; set; }
     public bool JumpInput { get; set; }
-    public bool FireInput { get; private set; }
-    public bool altFireInput { get; private set; }
+    public bool FireInput { get; set; }
+    public bool altFireInput { get; set; }
 
     public static InputHandler Instance { get; private set; }
 
