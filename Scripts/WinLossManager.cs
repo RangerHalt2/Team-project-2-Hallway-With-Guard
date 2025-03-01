@@ -28,7 +28,6 @@ public class WinLossManager : MonoBehaviour
         }
 
         Loss();
-        Win();
     }
 
     public void Loss()
@@ -51,7 +50,6 @@ public class WinLossManager : MonoBehaviour
     {
         //LB: Place the win condition script will be called here
         //LB: Access the UI manager, display win Screen
-        return;
         pauseManager.TogglePause();
     }
 
