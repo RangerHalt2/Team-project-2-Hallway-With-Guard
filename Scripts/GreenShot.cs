@@ -33,12 +33,15 @@ public class GreenShot : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        
+        if(collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Portal")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Portal")
+        if (collision.gameObject.tag == "Portal" || collision.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
             return;

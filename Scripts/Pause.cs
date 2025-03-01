@@ -18,7 +18,7 @@ public class Pause : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0.0f : 1.0f;
         AudioListener.pause = isPaused;
-        PauseBody.gameObject.SetActive(isPaused);
+        //PauseBody.gameObject.SetActive(isPaused);
 
         if (!isPaused)
         {

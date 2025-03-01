@@ -33,7 +33,10 @@ public class PurpleShot : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Portal")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
