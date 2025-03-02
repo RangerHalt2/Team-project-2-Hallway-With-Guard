@@ -29,14 +29,14 @@ public class UI_Controller : MonoBehaviour
     [SerializeField] private GameObject buttonInvincOFF;
     private static bool boolInvincOFF = true;
 
-    [SerializeField] private GameObject buttonHardModeON;
-    private static bool boolHardModeON = false;
-    [SerializeField] private GameObject buttonHardModeOFF;
-    private static bool boolHardModeOFF = true;
+    [SerializeField] private GameObject buttonSlowModeON;
+    private static bool boolSlowModeON = false;
+    [SerializeField] private GameObject buttonSlowModeOFF;
+    private static bool boolSlowModeOFF = true;
 
-    public bool isHardMode()
+    public bool isSlowMode()
     {
-        return boolHardModeON;
+        return boolSlowModeON;
     }
     private void Awake()
     {
@@ -58,13 +58,13 @@ public class UI_Controller : MonoBehaviour
         WinScreen.gameObject.SetActive(false);
         menuInfo.gameObject.SetActive(false);
         buttonInvincON.gameObject.SetActive(false);
-        buttonHardModeON.gameObject.SetActive(false);
+        buttonSlowModeON.gameObject.SetActive(false);
 
         // JA: New Implementation not yet tested. Updates Toggle Button Vis based on prior input.
         buttonInvincOFF.gameObject.SetActive(boolInvincOFF);
         buttonInvincON.gameObject.SetActive(boolInvincON);
-        buttonHardModeOFF.gameObject.SetActive(boolHardModeOFF);
-        buttonHardModeON.gameObject.SetActive(boolHardModeON);
+        buttonSlowModeOFF.gameObject.SetActive(boolSlowModeOFF);
+        buttonSlowModeON.gameObject.SetActive(boolSlowModeON);
 
         //  JA: Disabled for now until we know the main menu name and setup
         
@@ -148,12 +148,12 @@ public class UI_Controller : MonoBehaviour
         buttonInvincON.gameObject.SetActive(boolInvincON);
     }
 
-    public void toggleHardMode()
+    public void toggleSlowMode()
     {
-        boolHardModeOFF = !boolHardModeOFF;
-        buttonHardModeOFF.gameObject.SetActive(boolHardModeOFF);
-        boolHardModeON = !boolHardModeON;
-        buttonHardModeON.gameObject.SetActive(boolHardModeON);
+        boolSlowModeOFF = !boolSlowModeOFF;
+        buttonSlowModeOFF.gameObject.SetActive(boolSlowModeOFF);
+        boolSlowModeON = !boolSlowModeON;
+        buttonSlowModeON.gameObject.SetActive(boolSlowModeON);
     }
 
     // JA: Disabled until Scenes are Setup
@@ -161,7 +161,7 @@ public class UI_Controller : MonoBehaviour
     public void startGame()
     {
         //if (scene.name != "MainMenu")
-        SceneManager.LoadScene("Level01");
+        SceneManager.LoadScene("Area1");
     }
 
     public void backToMainMenu()

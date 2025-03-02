@@ -55,7 +55,7 @@ public class CharController : MonoBehaviour
         if (inputHandler.PauseInput)
         {
             inputHandler.PauseInput = false;
-            //UIManager.PullUPPause();
+            UIManager.PullUPPause();
             //pauseManager.TogglePause();
         }
 
