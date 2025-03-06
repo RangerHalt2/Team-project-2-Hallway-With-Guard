@@ -7,14 +7,14 @@ public class PressurePlate1 : MonoBehaviour
     [SerializeField] GameObject gate;
 
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Barrel")
+        if (collision.gameObject.tag == "Player")
         {
             gate.SetActive(false);
         }
     }
-
+    /*
     private void OnCollisionExit(Collision collision)
     {
         if(collision.gameObject.tag == "Barrel")
@@ -22,5 +22,5 @@ public class PressurePlate1 : MonoBehaviour
             gate.SetActive(true);
         }
     }
-
+    */
 }

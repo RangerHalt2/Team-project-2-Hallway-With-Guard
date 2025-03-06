@@ -15,10 +15,12 @@ public class Pause : MonoBehaviour
 
     public void TogglePause()
     {
+        Debug.Log("In toggle");
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0.0f : 1.0f;
         AudioListener.pause = isPaused;
-        PauseBody.gameObject.SetActive(isPaused);
+        if (!isPaused)
+            PauseBody.gameObject.SetActive(isPaused);
 
         if (!isPaused)
         {

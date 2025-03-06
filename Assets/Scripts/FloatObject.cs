@@ -21,6 +21,6 @@ public class FloatObject : MonoBehaviour
         transform.position = new Vector3(startPos.x, newY, startPos.z);
 
         // Optional: Debug log to check if position is changing
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 }

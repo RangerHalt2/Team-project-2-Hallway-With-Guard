@@ -55,7 +55,7 @@ public class CharController : MonoBehaviour
         timer -= Time.deltaTime;
 
 
-        if (inputHandler.PauseInput)
+        if (inputHandler.PauseInput && UIManager.canEsc)
         {
             inputHandler.PauseInput = false;
             UIManager.PullUPPause();

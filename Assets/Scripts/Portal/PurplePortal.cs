@@ -27,7 +27,7 @@ public class PurplePortal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player") return;
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "Barrel") return;
         if (!greenPortal) return;
         Debug.Log("Made it to Line 30P");
         characterController = other.gameObject.GetComponentInParent<CharController>();

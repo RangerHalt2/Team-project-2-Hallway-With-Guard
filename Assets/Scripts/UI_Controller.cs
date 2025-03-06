@@ -33,6 +33,11 @@ public class UI_Controller : MonoBehaviour
     private static bool boolSlowModeON = false;
     [SerializeField] private GameObject buttonSlowModeOFF;
     private static bool boolSlowModeOFF = true;
+    //in game text that shows active cheat
+    [SerializeField] private GameObject HUDInvincible;
+    [SerializeField] private GameObject HUDSlowChase;
+
+    [SerializeField] private AudioSource AM;
 
     public bool isSlowMode()
     {
@@ -41,7 +46,7 @@ public class UI_Controller : MonoBehaviour
     private void Awake()
     {
         //JA: not sure if this needs to stay here yet 
-        
+
     }
 
     public void Start()
@@ -66,36 +71,45 @@ public class UI_Controller : MonoBehaviour
         buttonSlowModeOFF.gameObject.SetActive(boolSlowModeOFF);
         buttonSlowModeON.gameObject.SetActive(boolSlowModeON);
 
+        HUDInvincible.gameObject.SetActive(boolInvincON);
+        HUDSlowChase.gameObject.SetActive(boolSlowModeON);
+
         //  JA: Disabled for now until we know the main menu name and setup
-        
+
         if (scene.name == "MainMenu")
         {
             masterCanvas.gameObject.SetActive(true);
             menuPause.gameObject.SetActive(true);
-            pauseManager.isPaused = true; 
+            pauseManager.isPaused = true;
         }
 
-        
+
     }
 
 
     // JA: Disabled for now until we can connect the UI and Pause Functionality
-    
+
     //LB: isPaused will switch to what it isn't, the ternirary operator will set the time scale based on T/F, and AudioListener.pause will update. 
-    
+
 
     public void PullUPPause()
     {
-        pauseManager.TogglePause();
+        
         menuPause.gameObject.SetActive(true);
         menuOptions.gameObject.SetActive(false);
         menuInfo.gameObject.SetActive(false);
+        masterCanvas.gameObject.SetActive(true);
+        pauseManager.TogglePause();
+        if (!pauseManager.isPaused)
+        {
+            menuPause.gameObject.SetActive(false);
+        }
         if (pauseManager.isPaused)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        
+
     }
 
 
@@ -146,6 +160,9 @@ public class UI_Controller : MonoBehaviour
         buttonInvincOFF.gameObject.SetActive(boolInvincOFF);
         boolInvincON = !boolInvincON;
         buttonInvincON.gameObject.SetActive(boolInvincON);
+        //in game text that shows active cheat
+        HUDInvincible.gameObject.SetActive(boolInvincON);
+
     }
 
     public void toggleSlowMode()
@@ -154,14 +171,23 @@ public class UI_Controller : MonoBehaviour
         buttonSlowModeOFF.gameObject.SetActive(boolSlowModeOFF);
         boolSlowModeON = !boolSlowModeON;
         buttonSlowModeON.gameObject.SetActive(boolSlowModeON);
+        //in game text that shows active cheat
+        HUDSlowChase.gameObject.SetActive(boolSlowModeON);
     }
 
     // JA: Disabled until Scenes are Setup
-    
+
     public void startGame()
     {
-        //if (scene.name != "MainMenu")
+        if (scene.name != "MainMenu")
+        {
+            if (pauseManager.isPaused) pauseManager.TogglePause();
+            AM.Stop();
+        }
+            
+        
         SceneManager.LoadScene("Area1");
+        
     }
 
     public void backToMainMenu()
@@ -169,15 +195,23 @@ public class UI_Controller : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    
+
 
     public void closeGame()
     {
         Application.Quit();
     }
 
+    public bool getInvuln()
+    {
+        return boolInvincON;
+    }
 
-    
+
+    public bool getSlow()
+    {
+        return boolSlowModeOFF;
+    }
 
 }
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Portal
   - Painting
+  - Enemy
+  - Barrel
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - BulletPassThru
   - PortalMask
   - Slime
-  - 
+  - Gate
   - 
   - 
   - 

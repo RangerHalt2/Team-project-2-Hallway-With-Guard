@@ -15,7 +15,10 @@ public class WinObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
+        {
             wlManager.Win();
+            Destroy(gameObject);
+        }
     }
 
 }

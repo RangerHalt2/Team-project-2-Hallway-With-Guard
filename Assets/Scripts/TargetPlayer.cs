@@ -1,3 +1,4 @@
+//Purpose: This script will move the enemy.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,16 @@ public class TargetPlayer : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    private UI_Controller ui;
+
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         target = GameObject.FindGameObjectWithTag("Player");
+        ui = GameObject.FindObjectOfType<UI_Controller>();
+        if (ui.getSlow()) agent.speed = 1f;
     }
 
     private void Update()
